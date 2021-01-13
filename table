@@ -1,0 +1,10 @@
+<div>
+   <table class="table">
+     <caption>표 제목</caption>
+     <tr><th>이름</th><td>박준언</td></tr>
+     <tr><th>생년월일</th><td>1999년 5월 21일</td></tr>
+     <tr><th>출생지</th><td>경상남도 김해시 구산동</td></tr>
+     <tr><th>국적</th><td>중국</td></tr>
+     <tr><th>학력</th><td>구산초등학교(졸업)<br>분성중학교(졸업)<br>구산고등학교(졸업)<br>신라대학교(자퇴)<br>직업학교(재학)</td></tr>
+     <tr><th>신체</th><td>178cm,A형,98kg</td></tr>
+   </div>

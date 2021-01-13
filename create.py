@@ -1,22 +1,21 @@
 #!python
 print("Content-Type: text/html")
 print()
-#한글 깨짐 현상 방식
 import sys
 import io
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 import cgi, os
-#목록
+
 files = os.listdir('data')
 listStr=''
 for item in files:
-    listStr = listStr + '<li><a href="index.py?id={name}">{name}살</a></li>'.format(name=item)
-#query String
+    listStr = listStr + '<li><a href="index.py?id={name}">{name}</a></li>'.format(name=item)
+
 form = cgi.FieldStorage()
 if 'id' in form:
     pageId = form["id"].value
-    description = open('data/'+pageId, 'r', encoding='utf-8').read()
+    description = open('data/'+pageId, 'r+', encoding='utf-8').read()
 else:
     pageId = ""
     description = open('table', encoding='utf-8').read()
@@ -36,12 +35,11 @@ print('''<!doctype html>
       <ul>
         {listStr}
       </ul>
-      <div>
-          <h2>{title}살</h2>
-          <p class="comments">{desc}</p>
-          <a href="create.py?id={title}">글 추가</a>
-      </div>
+      <form action="process_create.py?id={title}" method="post">
+        <p><textarea row="8" name="content">{form_description}</textarea></p>
+        <p><input type="submit"></p>
+      </form>
     </div>
   </body>
   </html>
-  '''.format(title=pageId, desc=description, listStr=listStr))
+  '''.format(title=pageId, desc=description, listStr=listStr, form_description=description))
